@@ -8,7 +8,7 @@ export const contactReducer = (state = {}, action) => {
     case types.GET_CONTACT.success:
       return {
         isRequesting: false,
-        value: action.result.results
+        contacts: action.result.data
       }
     case types.GET_CONTACT.failed:
       return {
@@ -22,7 +22,7 @@ export const contactReducer = (state = {}, action) => {
     case types.GET_CONTACT_BY_ID.success:
       return {
         isRequesting: false,
-        value: action.result.results
+        contact: action.result.data
       }
     case types.GET_CONTACT_BY_ID.failed:
       return {

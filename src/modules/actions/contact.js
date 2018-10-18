@@ -4,12 +4,8 @@ import * as types from './../constant'
 const BASE_API = 'https://simple-contact-crud.herokuapp.com';
 
 export const getContact = () => ({
-  types: types.GET_PEOPLE,
-  promise: axios.get(`${BASE_API}/contact`, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
+  types: types.GET_CONTACT,
+  promise: fetch(`${BASE_API}/contact`)
 })
 
 export const getContactById = id => ({

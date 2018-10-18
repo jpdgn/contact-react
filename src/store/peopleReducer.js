@@ -6,7 +6,6 @@ export const peopleReducer = (state = {}, action) => {
         isRequesting: true
       }
     case types.GET_PEOPLE.success:
-    console.log(action)
       return {
         isRequesting: false,
         value: action.result.results

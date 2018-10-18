@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Link } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -18,8 +19,8 @@ class ContactList extends Component {
     this.props.getContact()
   }
   render() {
-    const { contact } = this.props
-    console.log(contact)
+    const { contacts } = this.props
+    console.log(contacts)
     return(
       <Fragment>
         <AppBar position="static" color="default">
@@ -32,13 +33,25 @@ class ContactList extends Component {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>a</TableCell>
+              <TableCell>First Name</TableCell>
+              <TableCell>Last Name</TableCell>
+              <TableCell>Age</TableCell>
+              <TableCell>Photo</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell>a</TableCell>
-            </TableRow>
+            {
+              contacts && contacts.map(contact =>
+                <TableRow hover="true"
+                  onClick={() => this.props.history.push(`/contact/${contact.id}`)}
+                >
+                  <TableCell>{contact.firstName}</TableCell>
+                  <TableCell>{contact.lastName}</TableCell>
+                  <TableCell>{contact.age}</TableCell>
+                  <TableCell>{contact.photo}</TableCell>
+                </TableRow>
+              )
+            }
           </TableBody>
         </Table>
       </Fragment>
@@ -47,7 +60,7 @@ class ContactList extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    contact: state.contact,
+    contacts: state.contact.contacts,
     loading: state.contact.isRequesting
   }
 }
